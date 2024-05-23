@@ -1,8 +1,6 @@
 package br.com.alura.challengeJavaLiteralura.principal;
 
-import br.com.alura.challengeJavaLiteralura.model.record.DadosAutor;
-import br.com.alura.challengeJavaLiteralura.model.record.DadosLivro;
-import br.com.alura.challengeJavaLiteralura.model.record.DadosResult;
+import br.com.alura.challengeJavaLiteralura.model.record.DadosBuscaLivro;
 import br.com.alura.challengeJavaLiteralura.service.ConsumoApi;
 import br.com.alura.challengeJavaLiteralura.service.ConverteDados;
 
@@ -25,11 +23,10 @@ public class Principal {
         var json = consumoApi.obterDados(url);
         //System.out.println(json);
 
-        DadosLivro livro = converteDados.obterDados(json, DadosLivro.class);
+        DadosBuscaLivro livro = converteDados.obterDados(json, DadosBuscaLivro.class);
         System.out.println(livro);
 
-        livro.dadosResults().forEach(result -> {
-            System.out.println("ID de Origem: " + result.idOrigem());
+        livro.dadosLivros().forEach(result -> {
             System.out.println("Título: " + result.titulo());
             System.out.println("Autores:");
             result.dadosAutor().stream()
