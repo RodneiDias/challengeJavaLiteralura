@@ -12,6 +12,4 @@ public record DadosAutor(
         @JsonAlias("name") String name,
         @JsonAlias("birth_year") Integer birthYear,
         @JsonAlias("death_year") Integer deathYear
-        //List<DadosResult> livros
-        //@JsonAlias("results") List<String> livros
 ) {}
