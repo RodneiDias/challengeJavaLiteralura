@@ -1,5 +1,6 @@
 package br.com.alura.challengeJavaLiteralura.model;
 
+import br.com.alura.challengeJavaLiteralura.model.record.DadosAutor;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -10,7 +11,16 @@ public class Autor {
     private String nome;
     private Integer anoNascimento;
     private Integer anoMorte;
-    //private List<Livro> livros;
+
+    public Autor(DadosAutor resultAutor) {
+        this.nome = resultAutor.nome();
+        this.anoNascimento = resultAutor.anoNascimento();
+        this.anoMorte = resultAutor.anoMorte();
+    }
+
+    public Autor() { }
+
+    private List<Livro> livros;
 
     public String getName() {
         return nome;
@@ -34,5 +44,13 @@ public class Autor {
 
     public void setDeathYear(Integer anoMorte) {
         this.anoMorte = anoMorte;
+    }
+
+    @Override
+    public String toString() {
+        return  "nome = " + nome + '\'' +
+                ", anoNascimento=" + anoNascimento + '\'' +
+                ", anoMorte=" + anoMorte +
+                '}';
     }
 }

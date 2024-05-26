@@ -1,18 +1,30 @@
 package br.com.alura.challengeJavaLiteralura.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import br.com.alura.challengeJavaLiteralura.model.record.DadosAutor;
+import br.com.alura.challengeJavaLiteralura.model.record.DadosLivroResult;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.Arrays;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Livro {
 
     private String titulo;
-    private List<Autor> autores;
-    private List<String> idioma;
+    private List<DadosAutor> autores;
+    private List<String>idioma;
     private Integer numeroDeDownloads;
 
+    public Livro(DadosLivroResult result) {
+        this.titulo = result.titulo();
+        this.autores = List.of(result.dadosAutor().toArray(new DadosAutor[0]));
+        this.idioma = result.idioma();
+        this.numeroDeDownloads = result.numeroDeDownloads();
+    }
+
+    public Livro() {
+
+    }
 
     public String getTitulo() {
         return titulo;
@@ -22,11 +34,11 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public List<Autor> getAutores() {
+    public List<DadosAutor> getAutores() {
         return autores;
     }
 
-    public void setAutores(List<Autor> autores) {
+    public void setAutores(List<DadosAutor> autores) {
         this.autores = autores;
     }
 
@@ -47,9 +59,10 @@ public class Livro {
     }
     @Override
     public String toString() {
-        return  " titulo= " + titulo + '\'' +
-                ", autor= " + autores +
-                ", idioma= " + idioma +
+        return
+                " titulo= " + titulo + '\'' +
+                ", autor= " + autores + '\'' +
+                ", idioma= " + idioma + '\'' +
                 ", numero de downloads = " + numeroDeDownloads + '\'';
 
     }
