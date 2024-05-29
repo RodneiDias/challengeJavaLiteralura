@@ -18,7 +18,7 @@ public class Livro {
     private Long id;
     private String titulo;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "livro_id")
     private List<Autor> autores;
     private List<String> idioma;
@@ -75,7 +75,7 @@ public class Livro {
         return String.format("titulo = '%s', autor = '%s', idioma = '%s', numero de downloads = '%s'",
                 titulo, autores, idioma, numeroDeDownloads);
     }
-    //    @Override
+//    @Override
 //    public String toString() {
 //        return
 //                " titulo= " + titulo + '\'' +
