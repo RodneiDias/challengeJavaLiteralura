@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="dados_autor")
+@Table(name="autores")
 public class Autor {
 
     @Id
@@ -18,7 +18,7 @@ public class Autor {
     private Integer anoMorte;
 
     @OneToMany
-    @JoinColumn(name = "autor_id")
+//@ManyToMany(mappedBy = "autores")
     private List<Livro> livros;
     public Autor(DadosAutor resultAutor) {
         this.nome = resultAutor.nome();
@@ -68,15 +68,15 @@ public class Autor {
         this.livros = livros;
     }
 
-    public String getName() {
-        return nome;
+    public String getName(String nome) {
+        return this.nome;
     }
 
     public void setName(String nome) {
         this.nome = nome;
     }
 
-    public Integer getBirthYear() {
+    public Integer getBirthYear(Integer integer) {
         return anoNascimento;
     }
 
@@ -92,11 +92,14 @@ public class Autor {
         this.anoMorte = anoMorte;
     }
 
-    @Override
     public String toString() {
-        return  "nome = " + nome + '\'' +
-                ", anoNascimento=" + anoNascimento + '\'' +
-                ", anoMorte=" + anoMorte +
-                '}';
+        return String.format("nome = '%s', ano de nascimento = '%s', ano da morte = '%s'",
+                nome, anoNascimento, anoMorte);
     }
+//    @Override
+//    public String toString() {
+//        return  "nome = " + nome + '\'' +
+//                ", anoNascimento=" + anoNascimento + '\'' +
+//                ", anoMorte=" + anoMorte;
+//    }
 }
